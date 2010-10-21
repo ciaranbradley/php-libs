@@ -16,13 +16,12 @@ class Google_Map
 
 	private $directions;
 
-	public function __construct($width = "99%", $height = "350px", $zoom="14")
+	public function __construct($width = "99%", $height = "350px", $zoom="14", $api_key, $centre_point)
 	{
-		global $settings;
 
-		$this->api_key = $settings->get('GOOGLE_MAPS_API_KEY');
+		$this->api_key = $api_key
 
-		$this->center_point = $settings->get('GOOGLE_MAPS_CENTER_POINT');
+		$this->center_point = $centre_point;
 		
 		$this->points = array();
 		
