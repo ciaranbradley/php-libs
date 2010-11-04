@@ -4,22 +4,28 @@ class Haversine_Search
 {
 
 	protected $lat;
+	
 	protected $lng;
 	
-	private $miles = '3959';
-	private $kilometers = '6371';
+	private static $miles = '3959';
+	
+	private static $kilometers = '6371';
+	
 	private $distance;
 	//Sql specific
 	private $limit;
+	
 	private $from;
 	
 	private $params = false;
 	
 	private $converter;
 	
+	private $table;
+	
 	protected $obj;
 	
-	public function __construct($lat, $long, $param = false, $limit = 20, $from = 0, $distance = 25, $miles = true)
+	public function __construct($table, $lat, $long, $param = false, $limit = 20, $from = 0, $distance = 25, $miles = true)
 	{
 		
 		$this->lat = $lat;
@@ -38,11 +44,11 @@ class Haversine_Search
 		
 		if($miles == true)
 		{
-			$this->converter = $this->miles;
+			$this->converter = self::miles;
 		}
 		else
 		{
-			$this->converter = $this->kilometers;
+			$this->converter = self::kilometers;
 		}
 		
 		//return $this->get_results();
@@ -62,7 +68,7 @@ class Haversine_Search
 												* sin( radians( Lat ) ) 
 											   ) 
 							) 
-				AS distance FROM company HAVING distance < ' . $distance ;
+				AS distance FROM ' .$this->table ' HAVING distance < ' . $distance ;
 		
 		if($this->params)
 		{

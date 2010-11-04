@@ -59,10 +59,8 @@ class Google_Map
 
 				var error = '';
 
-				function initialize()
-				{
-				  	if(GBrowserIsCompatible())
-					{
+				function initialize() {
+				  	if(GBrowserIsCompatible()) {
 						<?php
 						
 						if(!empty($this->points))
@@ -110,8 +108,8 @@ class Google_Map
 					
 							    	   	var point = new GLatLng(<?=$lat?>, <?=$lng?>);
 	
-							    	   	if(point)
-							    	   	{
+							    	   	if(point){
+								    	   	
 							    	   		var marker = new GMarker(point);
 								          	map.addOverlay(marker);
 					
@@ -173,8 +171,7 @@ class Google_Map
 									
 									var point = new GLatLng(<?=$lat?>, <?=$lng?>);
 		
-						    	   	if(point)
-						    	   	{
+						    	   	if(point) {
 						    	   		map.setCenter(point, <?=$this->zoom?>);
 							        }
 									
